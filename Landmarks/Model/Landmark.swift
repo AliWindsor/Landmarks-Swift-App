@@ -15,6 +15,7 @@ struct Landmark: Hashable, Codable, Identifiable{ //identifiable protocol uses i
     var park: String
     var state: String
     var description: String
+    var  isFavorite: Bool
   
     private var imageName: String
     
