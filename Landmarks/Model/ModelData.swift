@@ -16,6 +16,15 @@ final class ModelData: ObservableObject{
 
     @Published var landmarks: [Landmark] = load("landmarkData.json") //create an array of landmarks and initialize from landmarkData.json
     var hikes: [Hike] = load("hikeData.json")
+    
+    var categories: [String: [Landmark]]{ //computed categories dictionary with category names as  keys, and array of landmarks  as valus
+        Dictionary(grouping: landmarks,
+            by: {$0.category.rawValue})
+    }
+    
+    var featured: [Landmark] {
+        landmarks.filter{$0.isFeatured}
+    }
 }
 
 func load<T: Decodable>(_ filename: String) -> T{
