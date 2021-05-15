@@ -15,6 +15,7 @@ final class ModelData: ObservableObject{
 //load function that fetches JSON data witha given name from the main bundle, local method relies on return type conformance to the codable protocol
 
     @Published var landmarks: [Landmark] = load("landmarkData.json") //create an array of landmarks and initialize from landmarkData.json
+    var hikes: [Hike] = load("hikeData.json")
 }
 
 func load<T: Decodable>(_ filename: String) -> T{
