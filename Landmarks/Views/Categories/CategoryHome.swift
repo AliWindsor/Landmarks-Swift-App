@@ -16,12 +16,18 @@ struct CategoryHome: View {
         NavigationView{
             List{
                 
+                PageView(pages: modelData.featured.map { FeatureCard(landmark: $0)})
+                                    .aspectRatio(3 / 2, contentMode: .fit)
+                                    .listRowInsets(EdgeInsets())
+                
+                /*
                 modelData.featured[0].image
                                    .resizable()
                                    .scaledToFill()
                                    .frame(height: 200)
                                    .clipped()
                     .listRowInsets(EdgeInsets()) //fills image horizontally
+                */
                 
                 ForEach(modelData.categories.keys.sorted(), id: \.self){ key in
                     CategoryRow(categoryName: key, items: modelData.categories[key]!)
@@ -33,12 +39,12 @@ struct CategoryHome: View {
                     Button(action: { showingProfile.toggle() }) {
                              Image(systemName: "person.crop.circle")
                                  .accessibilityLabel("User Profile")
-                         }
-                     }
-                    .sheet(isPresented: $showingProfile) {
-                         ProfileHost()
-                             .environmentObject(modelData)
-                     }
+                    }
+                }
+                .sheet(isPresented: $showingProfile) {
+                    ProfileHost()
+                        .environmentObject(modelData)
+                }
         }
         
     }

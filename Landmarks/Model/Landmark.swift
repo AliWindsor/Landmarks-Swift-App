@@ -31,6 +31,11 @@ struct Landmark: Hashable, Codable, Identifiable{ //identifiable protocol uses i
     var image: Image{
         Image(imageName)
     }
+    
+    //returns featured image if it exists
+    var featureImage: Image? {
+            isFeatured ? Image(imageName + "_feature") : nil
+        }
 
     private var coordinates: Coordinates
     
